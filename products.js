@@ -227,7 +227,7 @@ const displayCart = () => {
             cart.forEach((product, index) => {
                   const cartItem = document.createElement('div');
                   cartItem.innerHTML = `
-                  <section class="cardModal">
+                  <div class="cardModal">
                         <figure class="contentImageModal">
                               <img class="imageModal" src='${product.image}' alt='${product.description}'>                        
                         </figure>
@@ -236,7 +236,7 @@ const displayCart = () => {
                               <p>${product.price}</p>
                         </div>
                         <button id='remove-${index}' class='remove-button'>Quitar</button>
-                  </section>
+                  </div>
                   `;
                   cartContainer.appendChild(cartItem);
             })

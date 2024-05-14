@@ -1,7 +1,6 @@
-/* Modal */
-
 .headerModal {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
       align-items: center;
       margin-top: 18px;
@@ -10,6 +9,8 @@
 .subTitleModal {
       display: flex;
       justify-content: center;
+      z-index: 999;
+      color: white;
       width: 100%;
 }
 
@@ -17,22 +18,43 @@
       display: flex;
       justify-content: center;
       flex-direction: row;
+      /* position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 100; */
 }
 
 .contentCart {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      /* justify-content: center; */
+      /* position: absolute;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100vw;
+      right: 0;
+      top: 200px;       */
 }
 
 .modalCart {
       position: absolute;
-      z-index: 999;
       min-height: 750px;
+      z-index: 101;
       width: 75%;
       border-radius: 8px;
-      background: red;
+      background: linear-gradient(to bottom, black, transparent);
       box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
             0 0 0 2px rgb(190, 190, 190),
             0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
@@ -75,6 +97,7 @@
 }
 
 .close-button {
+      z-index: 9999;
       color: #aaa;
       float: right;
       font-size: 28px;
@@ -118,5 +141,3 @@
       background-color: rgb(255, 69, 69);
       align-items: center;
 }
-
-/* Modal */

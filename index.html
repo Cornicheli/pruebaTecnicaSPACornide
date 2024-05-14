@@ -16,12 +16,15 @@
             <h1 class="title">
                   Desafio SPA con Javascript
             </h1>
-            <button class="open-cart-button" id="open-cart-button">
-                  <img class="icon-shopping" src="/public/icon/shopping-cart.png" />
-                  <p class="icon-text-shopping" id="cart-count"></p>
-            </button>
+            <div class="content-shopping">
+                  <button class="open-cart-button" id="open-cart-button">
+                        <img class="icon-shopping" src="/public/icon/shopping-cart.png" />
+                        <p class="icon-text-shopping" id="cart-count"></p>
+                  </button>
+            </div>
       </header>
-      <section style="background-color: black; margin-bottom: 1rem;">
+      <section style="background: linear-gradient(to bottom, black, transparent);
+      ; margin-bottom: 1rem;">
             <figure class="bannerContent">
                   <img class="banner" src="/public/icon/banner.png" alt="banner hot sale">
             </figure>
@@ -46,7 +49,6 @@
                   <div class="contentCart" id="cart"></div>
             </div>
       </section>
-
       <div class="content-card" id="root"></div>
       <script src="./products.js"></script>
 </body>

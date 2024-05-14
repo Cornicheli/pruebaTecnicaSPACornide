@@ -28,19 +28,27 @@
       font-weight: bold;
 }
 
-.open-cart-button {
-      border-width: 0px;
+.content-shopping {
+      position: relative;
       margin-right: 15px;
       margin-top: 15px;
+      cursor: pointer;
+}
+
+.open-cart-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-width: 0px;
       height: 70px;
       width: 70px;
       cursor: pointer;
       padding: 5px;
       background-color: #000;
+      position: relative;
 }
 
 .icon-shopping {
-      position: relative;
       height: 100%;
       width: 100%;
       cursor: pointer;
@@ -48,8 +56,13 @@
 
 .icon-text-shopping {
       position: absolute;
-      right: 43.5px;
-      top: 52px;
       font-size: large;
       color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 11px;
+      right: 0;
+      bottom: 0;
+      left: 0;
 }
