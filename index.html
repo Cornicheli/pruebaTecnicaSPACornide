@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Technial Test SPA</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+      <section style="display: flex; width: 100%; justify-content: space-between;">
+            <h1 style="width: 100%; display: flex; justify-content: center; align-items: center;">
+                  MERCADO LIBRE 2.0</h1>
+            <button class="open-cart-button" id="open-cart-button">
+                  <img class="icon-shopping" src="./style/icon/shopping-cart.png" />
+                  <p class="icon-text-shopping" id="cart-count"></p>
+            </button>
+      </section>
+      <figure class="bannerContent">
+            <img class="banner" src="/style/icon/banner.png" alt="banner hot sale">
+      </figure>
+      <h3 style="text-align: center; font-size: 26px; margin: 1rem; padding: 0.5rem;">
+            🔥 CATEGORÍAS CON DESCUENTOS HOT 🔥
+      </h3>
+      <section class="cartDiscountOne" id="cartDiscountOne"> </section>
+      <section class="cartDiscountTwo" id="cartDiscountTwo"> </section>
+      <main class="modal">
+            <div class="modalCart hidden" id="cart-modal">
+                  <h2 style="text-align: center;">Mi carrito</h2>
+                  <button class="close-button" style="font-size: 25px;">
+                        &times;
+                  </button>
+
+            </div>
+            <input style="width: 300px; height: 50px; border-radius: 8px; padding: 10px;" type="text" id="search-bar"
+                  placeholder="Buscar productos..." />
+            <div class="contentCart" id="cart"></div>
+      </main>
+      <div class="content-card" id="root"></div>
+      <script src="./products.js"></script>
+</body>
+
+</html>
