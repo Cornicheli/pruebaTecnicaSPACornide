@@ -28,17 +28,18 @@
       </h3>
       <section class="cartDiscountOne" id="cartDiscountOne"> </section>
       <section class="cartDiscountTwo" id="cartDiscountTwo"> </section>
+      <div style="display: flex; align-items: center; justify-content: center">
+            <input style="width: 300px; height: 50px; border-radius: 8px; padding: 10px;" type="text" id="search-bar"
+                  placeholder="Buscar producto..." />
+      </div>
       <main class="modal">
             <div class="modalCart hidden" id="cart-modal">
                   <h2 style="text-align: center;">Mi carrito</h2>
                   <button class="close-button" style="font-size: 25px;">
                         &times;
                   </button>
-
+                  <div class="contentCart" id="cart"></div>
             </div>
-            <input style="width: 300px; height: 50px; border-radius: 8px; padding: 10px;" type="text" id="search-bar"
-                  placeholder="Buscar productos..." />
-            <div class="contentCart" id="cart"></div>
       </main>
       <div class="content-card" id="root"></div>
       <script src="./products.js"></script>
