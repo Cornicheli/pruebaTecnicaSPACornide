@@ -1,4 +1,4 @@
-const LIST_PRODUCTS = [
+export const LIST_PRODUCTS = [
       {
             id: 1,
             name: 'Smartphone',
@@ -175,176 +175,14 @@ const LIST_PRODUCTS = [
             image: 'https://images.tokopedia.net/img/cache/500-square/VqbcmM/2024/2/9/2ec9bc74-bb90-407c-b530-fc1f40895939.jpg'
       },
 ];
-
-const DISCOUNT_ONE = [
-      {
-            image: '/public/image/discount1.webp'
-      },
-      {
-            image: '/public/image/discount2.webp'
-      },
-      {
-            image: '/public/image/discount7.webp'
-      },
-      {
-            image: '/public/image/discount6.webp'
-      },
+export const DISCOUNT_ONE = [
+      { image: '/public/image/discount1.webp' },
+      { image: '/public/image/discount2.webp' },
+      { image: '/public/image/discount7.webp' },
+      { image: '/public/image/discount6.webp' }
 ]
-const DISCOUNT_TWO = [
-      {
-            image: '/public/image/discount5.webp'
-      },
-      {
-            image: '/public/image/discount4.webp'
-      },
-      {
-            image: '/public/image/discount3.webp'
-      },
+export const DISCOUNT_TWO = [
+      { image: '/public/image/discount5.webp' },
+      { image: '/public/image/discount4.webp' },
+      { image: '/public/image/discount3.webp' }
 ]
-
-const root = document.querySelector("#root");
-const cart = [];
-const modal = document.getElementById("cart-modal");
-const openCartButton = document.getElementById("open-cart-button");
-const closeButton = document.querySelector(".close-button");
-const cartDiv = document.querySelector(".modalCart");
-const cartCountElement = document.getElementById("cart-count");
-const createDiscountOne = document.getElementById('cartDiscountOne')
-const createDiscountTWo = document.getElementById('cartDiscountTwo')
-const searchBar = document.getElementById("search-bar");
-
-const updateCartCount = () => {
-      cartCountElement.textContent = `${cart.length}`;
-};
-
-const displayCart = () => {
-      console.log("Carrito:", cart);
-      const cartContainer = document.querySelector("#cart");
-      cartContainer.innerHTML = '';
-      if (cart.length === 0) {
-            cartDiv.classList.add("hidden");
-      } else {
-            cart.forEach((product, index) => {
-                  const cartItem = document.createElement('div');
-                  cartItem.innerHTML = `
-                  <section class="cardModal">
-                        <figure class="contentImageModal">
-                              <img class="imageModal" src='${product.image}' alt='${product.description}'>                        
-                        </figure>
-                        <div class="contentTitleModal">
-                              <h4>${product.name}</h4>
-                              <p>${product.price}</p>
-                        </div>
-                        <button id='remove-${index}' class='remove-button'>Quitar</button>
-                  </section>
-                  `;
-                  cartContainer.appendChild(cartItem);
-            })
-            const removeButtons = document.querySelectorAll('.remove-button');
-            for (const button of removeButtons) {
-                  button.addEventListener('click', () => {
-                        const index = button.id.split('-')[1];
-                        cart.splice(index, 1);
-                        displayCart();
-                        updateCartCount();
-                  });
-            }
-      }
-};
-
-const loadEvents = () => {
-      const buttons = document.querySelectorAll('.button');
-      for (const button of buttons) {
-            button.addEventListener('click', () => {
-                  const selectedProduct = LIST_PRODUCTS.find(product => product.id === Number(button.id));
-                  if (selectedProduct) {
-                        alert(`Se agregó al carrito el producto: ${selectedProduct.name}`);
-                        cart.push(selectedProduct);
-                        displayCart();
-                        updateCartCount();
-                  }
-            });
-      }
-};
-
-const createProducts = (filteredProducts = LIST_PRODUCTS) => {
-      root.innerHTML = ''
-      filteredProducts.forEach(product => {
-            console.log(filteredProducts)
-            const card = document.createElement('div');
-            card.innerHTML = `
-            <section class="card">      
-                  <img class="card-image" src='${product.image}' alt='${product.description}'>             
-                  <h3>${product.price}</h3>
-                  <h4>${product.description}</h4>
-                  <button id='${product.id}' class='button'>Agregar al carrito</button>
-            </section>
-            `;
-            root.appendChild(card);
-      });
-      loadEvents();
-};
-
-const productsDiscountOne = () => {
-      DISCOUNT_ONE.forEach(discount => {
-            const cardDiscountOne = document.createElement('figureOne');
-            cardDiscountOne.innerHTML = `
-                  <figure class="content-discount-one">
-                        <img class="image-discount" src='${discount.image}'>
-                  </figure>
-            `
-            createDiscountOne.appendChild(cardDiscountOne)
-      })
-}
-
-const productsDiscountTwo = () => {
-      DISCOUNT_TWO.forEach(discount => {
-            const cardDiscountTwo = document.createElement('figureTwo');
-            cardDiscountTwo.innerHTML = `
-                  <figure class="content-discount-two">                  
-                        <img class="image-discount" src='${discount.image}'>
-                  </figure>
-            `
-            createDiscountTWo.appendChild(cardDiscountTwo)
-      })
-}
-
-const toggleModal = () => {
-      modal.style.display = modal.style.display === "none" || modal.style.display === "" ? "block" : "none";
-};
-
-const shoppingCart = () => {
-      cart.length(() => {
-            const cardShopping = document.createElement('div');
-            cardShopping.innerHTML =
-                  `
-                        <p>
-                              ${cart.length}
-                        </p>
-                  `
-      })
-}
-
-const searchProducts = (event) => {
-      const searchText = event.target.value.toLowerCase();
-      const filteredProducts = LIST_PRODUCTS.filter(product =>
-            product.name.toLowerCase().includes(searchText) ||
-            product.description.toLowerCase().includes(searchText)
-      );
-      createProducts(filteredProducts);
-};
-
-searchBar.addEventListener('input', searchProducts);
-openCartButton.addEventListener('click', toggleModal);
-closeButton.addEventListener('click', toggleModal);
-
-window.onclick = (event) => {
-      if (event.target === modal) {
-            modal.style.display = "none";
-      }
-};
-
-createProducts();
-productsDiscountOne();
-productsDiscountTwo();
-updateCartCount();
