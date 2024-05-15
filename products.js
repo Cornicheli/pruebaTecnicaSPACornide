@@ -3,7 +3,8 @@ const LIST_PRODUCTS = [
             id: 1,
             name: 'Smartphone',
             price: '$599',
-            description: 'Iphone 14 pro max',
+            priceDiscount: '$359.40',
+            description: 'Iphone 14 pro max. 40% OFF',
             image: 'https://s13emagst.akamaized.net/products/48592/48591223/images/res_0a49cd835e308621c4ce9f501418d2a5.jpg'
       },
       {
@@ -80,7 +81,7 @@ const LIST_PRODUCTS = [
             id: 12,
             name: 'Air Fryer',
             price: '$89.99',
-            description: 'Freidora de Aire Gadnic',
+            description: 'Freidora de Aire Gadnic. 30% OFF',
             image: 'https://www.bidcom.com.ar/publicacionesML/productos/FREI0003/1000x1000-FREI0003.jpg'
       },
       {
@@ -94,7 +95,7 @@ const LIST_PRODUCTS = [
             id: 14,
             name: 'Leather Jacket',
             price: '$199',
-            description: 'Chaqueta de Cuero',
+            description: 'Chaqueta de Cuero. 45% OFF',
             image: 'https://http2.mlstatic.com/D_NQ_NP_950927-MLA76265626359_052024-O.webp'
       },
       {
@@ -115,14 +116,14 @@ const LIST_PRODUCTS = [
             id: 17,
             name: 'Mystery Novel',
             price: '$16.99',
-            description: 'Colchon Piero.',
+            description: 'Colchon Piero. 70% OFF',
             image: 'https://dcdn.mitiendanube.com/stores/001/125/330/products/21-8f2a1e251d32757f0116237073088925-640-0.jpg'
       },
       {
             id: 18,
             name: 'Running Shoes',
             price: '$79.99',
-            description: 'Zapatilla Adiddas',
+            description: 'Zapatilla Adiddas. 40% OFF',
             image: 'https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw10af208e/products/ADGW6511/ADGW6511-6.JPG'
       },
       {
@@ -164,7 +165,7 @@ const LIST_PRODUCTS = [
             id: 24,
             name: 'Toaster',
             price: '$29.99',
-            description: 'Tostadora Peaboy',
+            description: 'Tostadora Peaboy. 30% OFF',
             image: 'https://http2.mlstatic.com/D_NQ_NP_960753-MLU75808848636_042024-O.webp'
       },
       {
@@ -222,24 +223,28 @@ const displayCart = () => {
       const cartContainer = document.querySelector("#cart");
       cartContainer.innerHTML = '';
       if (cart.length === 0) {
-            cartDiv.classList.add("hidden");
+            const emptyMessage = document.createElement('div');
+            emptyMessage.textContent = "Su carrito está vacío! 😅";
+            emptyMessage.className = 'empty-message'; // Opcional: para añadir estilos a este mensaje
+            cartContainer.appendChild(emptyMessage);
       } else {
             cart.forEach((product, index) => {
                   const cartItem = document.createElement('div');
-                  cartItem.innerHTML = `
+                  cartItem.innerHTML = `                  
                   <div class="cardModal">
                         <figure class="contentImageModal">
-                              <img class="imageModal" src='${product.image}' alt='${product.description}'>                        
+                              <img class="imageModal" src='${product.image}' alt='${product.description}'>
                         </figure>
                         <div class="contentTitleModal">
-                              <h4>${product.name}</h4>
+                              <h4>${product.description}</h4>
                               <p>${product.price}</p>
                         </div>
                         <button id='remove-${index}' class='remove-button'>Quitar</button>
                   </div>
-                  `;
+            `;
                   cartContainer.appendChild(cartItem);
-            })
+            });
+
             const removeButtons = document.querySelectorAll('.remove-button');
             for (const button of removeButtons) {
                   button.addEventListener('click', () => {
@@ -257,8 +262,20 @@ const loadEvents = () => {
       for (const button of buttons) {
             button.addEventListener('click', () => {
                   const selectedProduct = LIST_PRODUCTS.find(product => product.id === Number(button.id));
+                  console.log(selectedProduct)
                   if (selectedProduct) {
-                        alert(`Se agregó al carrito el producto: ${selectedProduct.name}`);
+                        const cartCheckProduct = document.createElement('div');
+                        cartCheckProduct.innerHTML = `
+                              <div class="cart-check-product">
+                                    <p>Su producto se agregó correctamente: ${selectedProduct.description}</p>
+                              </div>
+                        `;
+                        cartCheckProduct.className = 'cart-check-product';
+                        document.body.appendChild(cartCheckProduct);
+                        setTimeout(() => {
+                              document.body.removeChild(cartCheckProduct);
+                        }, 3000);
+
                         cart.push(selectedProduct);
                         displayCart();
                         updateCartCount();
@@ -274,7 +291,7 @@ const createProducts = (filteredProducts = LIST_PRODUCTS) => {
             const card = document.createElement('div');
             card.innerHTML = `
             <section class="card">      
-                  <img class="card-image" src='${product.image}' alt='${product.description}'>             
+                  <img class="card-image" src='${product.image}' alt='${product.description}'>                   
                   <h3>${product.price}</h3>
                   <h4>${product.description}</h4>
                   <button id='${product.id}' class='button'>Agregar al carrito</button>
@@ -317,10 +334,8 @@ const shoppingCart = () => {
       cart.length(() => {
             const cardShopping = document.createElement('div');
             cardShopping.innerHTML =
-                  `
-                        <p>
-                              ${cart.length}
-                        </p>
+                  ` 
+                        <p> ${cart.length} </p>
                   `
       })
 }
@@ -331,7 +346,16 @@ const searchProducts = (event) => {
             product.name.toLowerCase().includes(searchText) ||
             product.description.toLowerCase().includes(searchText)
       );
-      createProducts(filteredProducts);
+      if (filteredProducts.length > 0) {
+            createProducts(filteredProducts);
+      } else {
+            const root = document.querySelector("#root");
+            root.innerHTML = '';
+            const emptyMessage = document.createElement('div');
+            emptyMessage.textContent = "No se encontraron resultados! 😔";
+            emptyMessage.className = 'empty-message-result';
+            root.appendChild(emptyMessage);
+      }
 };
 
 searchBar.addEventListener('input', searchProducts);

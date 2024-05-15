@@ -2,6 +2,9 @@
       box-sizing: border-box;
       padding: 0%;
       margin: 0%;
+      font-family: "Poppins", sans-serif;
+      font-weight: 200;
+      font-style: normal;
 }
 
 .header {
@@ -12,7 +15,7 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      height: 100px;
+      height: 75px;
       z-index: 999;
       background: #000;
 }
@@ -26,12 +29,13 @@
       width: 100%;
       font-size: 32px;
       font-weight: bold;
+      text-align: center;
 }
 
 .content-shopping {
       position: relative;
       margin-right: 15px;
-      margin-top: 15px;
+      margin-top: 5px;
       cursor: pointer;
 }
 
@@ -65,4 +69,16 @@
       right: 0;
       bottom: 0;
       left: 0;
+}
+
+.cart-check-product {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
 }

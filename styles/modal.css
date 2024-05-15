@@ -6,6 +6,25 @@
       margin-top: 18px;
 }
 
+.empty-message {
+      text-align: center;
+      width: 97%;
+      height: 100%;
+      font-size: 25px;
+      margin-top: 25px;
+      color: white;
+}
+
+.empty-message-result {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 97%;
+      height: 350px;
+      font-size: 25px;
+      color: black;
+}
+
 .subTitleModal {
       display: flex;
       justify-content: center;
@@ -18,34 +37,14 @@
       display: flex;
       justify-content: center;
       flex-direction: row;
-      /* position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 100; */
 }
 
 .contentCart {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      /* justify-content: center; */
-      /* position: absolute;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      height: 100%;
-      width: 100vw;
-      right: 0;
-      top: 200px;       */
+      min-height: 500px;
 }
 
 .modalCart {
@@ -140,4 +139,18 @@
       transition-duration: .3s;
       background-color: rgb(255, 69, 69);
       align-items: center;
+}
+
+@media (max-width: 768px) {
+      .cardModal {
+            width: 250px;
+            height: 350px;
+      }
+}
+
+@media (max-width: 400px) {
+      .cardModal {
+            width: 225px;
+            height: 325px;
+      }
 }
