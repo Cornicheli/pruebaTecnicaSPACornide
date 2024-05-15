@@ -225,7 +225,7 @@ const displayCart = () => {
       if (cart.length === 0) {
             const emptyMessage = document.createElement('div');
             emptyMessage.textContent = "Su carrito está vacío! 😅";
-            emptyMessage.className = 'empty-message'; // Opcional: para añadir estilos a este mensaje
+            emptyMessage.className = 'empty-message';
             cartContainer.appendChild(emptyMessage);
       } else {
             cart.forEach((product, index) => {
