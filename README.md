@@ -27,5 +27,3 @@ Esta es una aplicación de una sola página (SPA) para un comercio electrónico,
 2. Navega al directorio del proyecto::
    ```bash
    cd technical_test_spa
-
-
