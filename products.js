@@ -3,7 +3,8 @@ const LIST_PRODUCTS = [
             id: 1,
             name: 'Smartphone',
             price: '$599',
-            description: 'Iphone 14 pro max',
+            priceDiscount: '$359.40',
+            description: 'Iphone 14 pro max. 40% OFF',
             image: 'https://s13emagst.akamaized.net/products/48592/48591223/images/res_0a49cd835e308621c4ce9f501418d2a5.jpg'
       },
       {
@@ -80,7 +81,7 @@ const LIST_PRODUCTS = [
             id: 12,
             name: 'Air Fryer',
             price: '$89.99',
-            description: 'Freidora de Aire Gadnic',
+            description: 'Freidora de Aire Gadnic. 30% OFF',
             image: 'https://www.bidcom.com.ar/publicacionesML/productos/FREI0003/1000x1000-FREI0003.jpg'
       },
       {
@@ -94,7 +95,7 @@ const LIST_PRODUCTS = [
             id: 14,
             name: 'Leather Jacket',
             price: '$199',
-            description: 'Chaqueta de Cuero',
+            description: 'Chaqueta de Cuero. 45% OFF',
             image: 'https://http2.mlstatic.com/D_NQ_NP_950927-MLA76265626359_052024-O.webp'
       },
       {
@@ -115,14 +116,14 @@ const LIST_PRODUCTS = [
             id: 17,
             name: 'Mystery Novel',
             price: '$16.99',
-            description: 'Colchon Piero.',
+            description: 'Colchon Piero. 70% OFF',
             image: 'https://dcdn.mitiendanube.com/stores/001/125/330/products/21-8f2a1e251d32757f0116237073088925-640-0.jpg'
       },
       {
             id: 18,
             name: 'Running Shoes',
             price: '$79.99',
-            description: 'Zapatilla Adiddas',
+            description: 'Zapatilla Adiddas. 40% OFF',
             image: 'https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw10af208e/products/ADGW6511/ADGW6511-6.JPG'
       },
       {
@@ -164,7 +165,7 @@ const LIST_PRODUCTS = [
             id: 24,
             name: 'Toaster',
             price: '$29.99',
-            description: 'Tostadora Peaboy',
+            description: 'Tostadora Peaboy. 30% OFF',
             image: 'https://http2.mlstatic.com/D_NQ_NP_960753-MLU75808848636_042024-O.webp'
       },
       {
@@ -213,13 +214,10 @@ const createDiscountOne = document.getElementById('cartDiscountOne')
 const createDiscountTWo = document.getElementById('cartDiscountTwo')
 const searchBar = document.getElementById("search-bar");
 
-
-// Actualiza el contador del carrito
 const updateCartCount = () => {
       cartCountElement.textContent = `${cart.length}`;
 };
 
-// Muestra los productos en el carrito
 const displayCart = () => {
       console.log("Carrito:", cart);
       const cartContainer = document.querySelector("#cart");
@@ -259,8 +257,6 @@ const displayCart = () => {
       }
 };
 
-
-// Añade eventos a los botones de "Agregar al carrito".
 const loadEvents = () => {
       const buttons = document.querySelectorAll('.button');
       for (const button of buttons) {
@@ -268,7 +264,18 @@ const loadEvents = () => {
                   const selectedProduct = LIST_PRODUCTS.find(product => product.id === Number(button.id));
                   console.log(selectedProduct)
                   if (selectedProduct) {
-                        alert(`Se agregó al carrito el producto: ${selectedProduct.name}`);
+                        const cartCheckProduct = document.createElement('div');
+                        cartCheckProduct.innerHTML = `
+                              <div class="cart-check-product">
+                                    <p>Su producto se agregó correctamente: ${selectedProduct.description}</p>
+                              </div>
+                        `;
+                        cartCheckProduct.className = 'cart-check-product';
+                        document.body.appendChild(cartCheckProduct);
+                        setTimeout(() => {
+                              document.body.removeChild(cartCheckProduct);
+                        }, 3000);
+
                         cart.push(selectedProduct);
                         displayCart();
                         updateCartCount();
@@ -277,8 +284,6 @@ const loadEvents = () => {
       }
 };
 
-// Crea y muestra las tarjetas de productos en la página principal. 
-// Esta función puede filtrar productos si se le pasa un arreglo de productos filtrados.
 const createProducts = (filteredProducts = LIST_PRODUCTS) => {
       root.innerHTML = ''
       filteredProducts.forEach(product => {
@@ -286,7 +291,7 @@ const createProducts = (filteredProducts = LIST_PRODUCTS) => {
             const card = document.createElement('div');
             card.innerHTML = `
             <section class="card">      
-                  <img class="card-image" src='${product.image}' alt='${product.description}'>             
+                  <img class="card-image" src='${product.image}' alt='${product.description}'>                   
                   <h3>${product.price}</h3>
                   <h4>${product.description}</h4>
                   <button id='${product.id}' class='button'>Agregar al carrito</button>
@@ -297,7 +302,6 @@ const createProducts = (filteredProducts = LIST_PRODUCTS) => {
       loadEvents();
 };
 
-// Muestran las imágenes de los productos
 const productsDiscountOne = () => {
       DISCOUNT_ONE.forEach(discount => {
             const cardDiscountOne = document.createElement('figureOne');
@@ -310,7 +314,6 @@ const productsDiscountOne = () => {
       })
 }
 
-// Muestran las imágenes de los productos
 const productsDiscountTwo = () => {
       DISCOUNT_TWO.forEach(discount => {
             const cardDiscountTwo = document.createElement('figureTwo');
@@ -323,7 +326,6 @@ const productsDiscountTwo = () => {
       })
 }
 
-// Abre y cierra el modal del carrito.
 const toggleModal = () => {
       modal.style.display = modal.style.display === "none" || modal.style.display === "" ? "block" : "none";
 };
@@ -332,38 +334,30 @@ const shoppingCart = () => {
       cart.length(() => {
             const cardShopping = document.createElement('div');
             cardShopping.innerHTML =
-                  `
-                        <p>
-                              ${cart.length}
-                        </p>
+                  ` 
+                        <p> ${cart.length} </p>
                   `
       })
 }
 
-
-// Filtra los productos del usuario en la barra de búsqueda.
 const searchProducts = (event) => {
       const searchText = event.target.value.toLowerCase();
       const filteredProducts = LIST_PRODUCTS.filter(product =>
             product.name.toLowerCase().includes(searchText) ||
             product.description.toLowerCase().includes(searchText)
       );
-
-      // Verificar si hay productos filtrados
       if (filteredProducts.length > 0) {
             createProducts(filteredProducts);
       } else {
             const root = document.querySelector("#root");
-            root.innerHTML = ''; // Limpiar contenido anterior
+            root.innerHTML = '';
             const emptyMessage = document.createElement('div');
             emptyMessage.textContent = "No se encontraron resultados! 😔";
-            emptyMessage.className = 'empty-message-result'; // Opcional: para añadir estilos a este mensaje
+            emptyMessage.className = 'empty-message-result';
             root.appendChild(emptyMessage);
       }
 };
 
-
-// Eventos del DOM: Se añaden eventos a la barra de búsqueda, al botón de abrir el carrito y al botón de cerrar el carrito.
 searchBar.addEventListener('input', searchProducts);
 openCartButton.addEventListener('click', toggleModal);
 closeButton.addEventListener('click', toggleModal);
