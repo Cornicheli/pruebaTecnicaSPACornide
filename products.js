@@ -213,23 +213,29 @@ const createDiscountOne = document.getElementById('cartDiscountOne')
 const createDiscountTWo = document.getElementById('cartDiscountTwo')
 const searchBar = document.getElementById("search-bar");
 
+
+// Actualiza el contador del carrito
 const updateCartCount = () => {
       cartCountElement.textContent = `${cart.length}`;
 };
 
+// Muestra los productos en el carrito
 const displayCart = () => {
       console.log("Carrito:", cart);
       const cartContainer = document.querySelector("#cart");
       cartContainer.innerHTML = '';
       if (cart.length === 0) {
-            cartDiv.classList.add("hidden");
+            const emptyMessage = document.createElement('div');
+            emptyMessage.textContent = "Su carrito está vacío! 😅";
+            emptyMessage.className = 'empty-message'; // Opcional: para añadir estilos a este mensaje
+            cartContainer.appendChild(emptyMessage);
       } else {
             cart.forEach((product, index) => {
                   const cartItem = document.createElement('div');
-                  cartItem.innerHTML = `
+                  cartItem.innerHTML = `                  
                   <div class="cardModal">
                         <figure class="contentImageModal">
-                              <img class="imageModal" src='${product.image}' alt='${product.description}'>                        
+                              <img class="imageModal" src='${product.image}' alt='${product.description}'>
                         </figure>
                         <div class="contentTitleModal">
                               <h4>${product.name}</h4>
@@ -237,9 +243,10 @@ const displayCart = () => {
                         </div>
                         <button id='remove-${index}' class='remove-button'>Quitar</button>
                   </div>
-                  `;
+            `;
                   cartContainer.appendChild(cartItem);
-            })
+            });
+
             const removeButtons = document.querySelectorAll('.remove-button');
             for (const button of removeButtons) {
                   button.addEventListener('click', () => {
@@ -252,11 +259,14 @@ const displayCart = () => {
       }
 };
 
+
+// Añade eventos a los botones de "Agregar al carrito".
 const loadEvents = () => {
       const buttons = document.querySelectorAll('.button');
       for (const button of buttons) {
             button.addEventListener('click', () => {
                   const selectedProduct = LIST_PRODUCTS.find(product => product.id === Number(button.id));
+                  console.log(selectedProduct)
                   if (selectedProduct) {
                         alert(`Se agregó al carrito el producto: ${selectedProduct.name}`);
                         cart.push(selectedProduct);
@@ -267,6 +277,8 @@ const loadEvents = () => {
       }
 };
 
+// Crea y muestra las tarjetas de productos en la página principal. 
+// Esta función puede filtrar productos si se le pasa un arreglo de productos filtrados.
 const createProducts = (filteredProducts = LIST_PRODUCTS) => {
       root.innerHTML = ''
       filteredProducts.forEach(product => {
@@ -285,6 +297,7 @@ const createProducts = (filteredProducts = LIST_PRODUCTS) => {
       loadEvents();
 };
 
+// Muestran las imágenes de los productos
 const productsDiscountOne = () => {
       DISCOUNT_ONE.forEach(discount => {
             const cardDiscountOne = document.createElement('figureOne');
@@ -297,6 +310,7 @@ const productsDiscountOne = () => {
       })
 }
 
+// Muestran las imágenes de los productos
 const productsDiscountTwo = () => {
       DISCOUNT_TWO.forEach(discount => {
             const cardDiscountTwo = document.createElement('figureTwo');
@@ -309,6 +323,7 @@ const productsDiscountTwo = () => {
       })
 }
 
+// Abre y cierra el modal del carrito.
 const toggleModal = () => {
       modal.style.display = modal.style.display === "none" || modal.style.display === "" ? "block" : "none";
 };
@@ -325,15 +340,30 @@ const shoppingCart = () => {
       })
 }
 
+
+// Filtra los productos del usuario en la barra de búsqueda.
 const searchProducts = (event) => {
       const searchText = event.target.value.toLowerCase();
       const filteredProducts = LIST_PRODUCTS.filter(product =>
             product.name.toLowerCase().includes(searchText) ||
             product.description.toLowerCase().includes(searchText)
       );
-      createProducts(filteredProducts);
+
+      // Verificar si hay productos filtrados
+      if (filteredProducts.length > 0) {
+            createProducts(filteredProducts);
+      } else {
+            const root = document.querySelector("#root");
+            root.innerHTML = ''; // Limpiar contenido anterior
+            const emptyMessage = document.createElement('div');
+            emptyMessage.textContent = "No se encontraron resultados! 😔";
+            emptyMessage.className = 'empty-message-result'; // Opcional: para añadir estilos a este mensaje
+            root.appendChild(emptyMessage);
+      }
 };
 
+
+// Eventos del DOM: Se añaden eventos a la barra de búsqueda, al botón de abrir el carrito y al botón de cerrar el carrito.
 searchBar.addEventListener('input', searchProducts);
 openCartButton.addEventListener('click', toggleModal);
 closeButton.addEventListener('click', toggleModal);

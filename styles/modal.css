@@ -6,6 +6,25 @@
       margin-top: 18px;
 }
 
+.empty-message {
+      text-align: center;
+      width: 97%;
+      height: 100%;
+      font-size: 25px;
+      margin-top: 25px;
+      color: white;
+}
+
+.empty-message-result {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 97%;
+      height: 350px;
+      font-size: 25px;
+      color: black;
+}
+
 .subTitleModal {
       display: flex;
       justify-content: center;
@@ -35,7 +54,8 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      /* justify-content: center; */
+      justify-content: center;
+      min-height: 500px;
       /* position: absolute;
       display: flex;
       flex-direction: row;
@@ -140,4 +160,11 @@
       transition-duration: .3s;
       background-color: rgb(255, 69, 69);
       align-items: center;
+}
+
+@media (max-width: 768px) {
+      .cardModal {
+            width: 250px;
+            height: 350px;
+      }
 }
