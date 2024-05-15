@@ -37,17 +37,6 @@
       display: flex;
       justify-content: center;
       flex-direction: row;
-      /* position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 100; */
 }
 
 .contentCart {
@@ -56,16 +45,6 @@
       flex-wrap: wrap;
       justify-content: center;
       min-height: 500px;
-      /* position: absolute;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      width: 100vw;
-      right: 0;
-      top: 200px;       */
 }
 
 .modalCart {
@@ -166,5 +145,12 @@
       .cardModal {
             width: 250px;
             height: 350px;
+      }
+}
+
+@media (max-width: 400px) {
+      .cardModal {
+            width: 225px;
+            height: 325px;
       }
 }

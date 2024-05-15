@@ -238,7 +238,7 @@ const displayCart = () => {
                               <img class="imageModal" src='${product.image}' alt='${product.description}'>
                         </figure>
                         <div class="contentTitleModal">
-                              <h4>${product.name}</h4>
+                              <h4>${product.description}</h4>
                               <p>${product.price}</p>
                         </div>
                         <button id='remove-${index}' class='remove-button'>Quitar</button>
